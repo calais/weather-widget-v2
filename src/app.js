@@ -36,13 +36,13 @@ function displayTemperature(response) {
   const dateElement = document.getElementById('date');
   const iconElement = document.getElementById('icon');
 
-  humidityElement.innerHTML = response.data.main.humidity;
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  iconElement.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  humidityElement.textContent = response.data.main.humidity;
+  temperatureElement.textContent = Math.round(response.data.main.temp);
+  cityElement.textContent = response.data.name;
+  descriptionElement.textContent = response.data.weather[0].description;
+  windElement.textContent = Math.round(response.data.wind.speed);
+  dateElement.textContent = formatDate(response.data.dt * 1000);
+  iconElement.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 }
 const apiKey = '204af6a06d59739ba0c43dfe8c56a8ca';
 let city = 'Austin';
