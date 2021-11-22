@@ -10,6 +10,8 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather</title>
   </head>
@@ -18,10 +20,10 @@
       <div class="weather-widget-wrapper">
         <div class="weather-widget">
           <div class="overview">
-            <h1>Austin, US</h1>
+            <h1 id="city"></h1>
             <ul>
               <li>Monday 10:00</li>
-              <li>Clear</li>
+              <li id="description"></li>
             </ul>
           </div>
           <div class="row">
@@ -32,16 +34,15 @@
                   alt="Clear"
                 />
                 <div>
-                  <strong>12</strong
+                  <strong id="temperature"></strong
                   ><span class="units">°C | <a href="#">°F</a></span>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <ul>
-                <li>Precipitation: 0%</li>
-                <li>Humidity: 73%</li>
-                <li>Wind: 2 km/h</li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
               </ul>
             </div>
           </div>
@@ -51,7 +52,10 @@
             >Open source code</a
           >
           by Chrissy Addy. Hosted on
-          <a href="https://mystifying-agnesi-8b9678.netlify.app/">Netlify</a
+          <a
+            href="https://mystifying-agnesi-8b9678.netlify.app/"
+            target="_blank"
+            >Netlify</a
           >.</small
         >
       </div>
