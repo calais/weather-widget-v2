@@ -1,5 +1,8 @@
 'use strict';
 
+let units = 'imperial';
+let city = 'Austin';
+
 function formatDate(timestamp) {
   const date = new Date(timestamp);
   const hours = String(date.getHours()).padStart(2, '0');
@@ -46,7 +49,6 @@ function displayTemperature(response) {
 
 function search(city) {
   const apiKey = '204af6a06d59739ba0c43dfe8c56a8ca';
-  let units = 'metric';
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayTemperature);
@@ -54,12 +56,58 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let cityInputElement = document.getElementById('city-input');
-  search(cityInputElement.value);
-  console.log(cityInputElement.value);
+  city = document.getElementById('city-input').value;
+  search(city);
 }
 
-search('Austin');
+function changeUnits(event) {
+  event.preventDefault();
+  const windUnitsElement = document.getElementById('wind-units');
+
+  if (units === 'metric') {
+    units = 'imperial';
+    windUnitsElement.textContent = ' mph';
+    celciusLink.classList.remove('disabled');
+    fahrenheitLink.classList.add('disabled');
+  } else if (units === 'imperial') {
+    units = 'metric';
+    windUnitsElement.textContent = ' km/h';
+    celciusLink.classList.add('disabled');
+    fahrenheitLink.classList.remove('disabled');
+  }
+  search(city);
+}
+
+function changeToImperial(event) {
+  event.preventDefault();
+  const windUnitsElement = document.getElementById('wind-units');
+
+  units = 'imperial';
+  windUnitsElement.textContent = ' mph';
+  celciusLink.classList.remove('disabled');
+  fahrenheitLink.classList.add('disabled');
+
+  search(city);
+}
+
+function changeToMetric(event) {
+  event.preventDefault();
+  const windUnitsElement = document.getElementById('wind-units');
+
+  units = 'metric';
+  windUnitsElement.textContent = ' km/h';
+  celciusLink.classList.add('disabled');
+  fahrenheitLink.classList.remove('disabled');
+  search(city);
+}
 
 const form = document.getElementById('search-form');
 form.addEventListener('submit', handleSubmit);
+
+const fahrenheitLink = document.getElementById('fahrenheit-link');
+fahrenheitLink.addEventListener('click', changeToImperial);
+
+const celciusLink = document.getElementById('celcius-link');
+celciusLink.addEventListener('click', changeToMetric);
+
+search(city);

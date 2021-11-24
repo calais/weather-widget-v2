@@ -56,14 +56,19 @@
                 />
                 <div>
                   <strong id="temperature"></strong
-                  ><span class="units">°C | <a href="#">°F</a></span>
+                  ><span class="units">
+                    <a href="#" class="disabled" id="fahrenheit-link">°F</a> |
+                    <a href="#" id="celcius-link">°C</a>
+                  </span>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <ul>
                 <li>Humidity: <span id="humidity"></span>%</li>
-                <li>Wind: <span id="wind"></span> km/h</li>
+                <li>
+                  Wind: <span id="wind"></span><span id="wind-units"> mph</span>
+                </li>
               </ul>
             </div>
           </div>
