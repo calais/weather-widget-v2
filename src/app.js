@@ -29,7 +29,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes} ${amPM}`;
 }
 
-function displayTemperature(response) {
+function displayWeather(response) {
   const cityElement = document.getElementById('city');
   const temperatureElement = document.getElementById('temperature');
   const descriptionElement = document.getElementById('description');
@@ -51,30 +51,12 @@ function search(city) {
   const apiKey = '204af6a06d59739ba0c43dfe8c56a8ca';
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   city = document.getElementById('city-input').value;
-  search(city);
-}
-
-function changeUnits(event) {
-  event.preventDefault();
-  const windUnitsElement = document.getElementById('wind-units');
-
-  if (units === 'metric') {
-    units = 'imperial';
-    windUnitsElement.textContent = ' mph';
-    celciusLink.classList.remove('disabled');
-    fahrenheitLink.classList.add('disabled');
-  } else if (units === 'imperial') {
-    units = 'metric';
-    windUnitsElement.textContent = ' km/h';
-    celciusLink.classList.add('disabled');
-    fahrenheitLink.classList.remove('disabled');
-  }
   search(city);
 }
 
