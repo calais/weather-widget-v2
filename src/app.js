@@ -17,7 +17,7 @@ function formatDate(timestamp) {
   const date = new Date(timestamp);
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
-  
+
   let amPM;
 
   if (hours > 12) {
@@ -33,19 +33,17 @@ function formatDate(timestamp) {
 
 function displayForecast(response) {
   const forecastElement = document.getElementById('forecast');
-  console.log(response.data)
-;
-  let forecastDays = [1, 2, 3, 4, 5];
+
+  let forecastDays = [1, 2, 3, 4, 5, 6];
   let forecastHTML = `<div class="row">`;
 
-  forecastDays.forEach(function (day){
+  forecastDays.forEach(function (day) {
     const max = Math.round(response.data.daily[day].temp.max);
     const min = Math.round(response.data.daily[day].temp.min);
 
     const timestamp = response.data.daily[day].dt;
     const forecastDate = new Date(timestamp * 1000);
     const dayOfWeek = daysOfWeek[forecastDate.getDay()];
- 
 
     forecastHTML =
       forecastHTML +
@@ -58,8 +56,8 @@ function displayForecast(response) {
                   ><span class="weather-forecast-temp-min">${min}°</span>
                 </div>
               </div>`;
-  })
-  
+  });
+
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
@@ -92,11 +90,9 @@ function displayWeather(response) {
 }
 
 function search(city) {
-  
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayWeather);
-  
 }
 
 function handleSubmit(event) {
