@@ -29,6 +29,31 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes} ${amPM}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.getElementById('forecast');
+
+  let days = ["Thursday", "Friday", "Saturday"];
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day){
+    forecastHTML =
+      forecastHTML +
+      `
+              <div class="col-2">
+                <div class="weather-forecast-date">${day}</div>
+                <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" width="42" />
+                <div class="weather-forecast-temp">
+                  <span class="weather-forecast-temp-max">18° </span
+                  ><span class="weather-forecast-temp-min">12°</span>
+                </div>
+              </div>`;
+  })
+  
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeather(response) {
   const cityElement = document.getElementById('city');
   const temperatureElement = document.getElementById('temperature');
@@ -93,3 +118,4 @@ const celciusLink = document.getElementById('celcius-link');
 celciusLink.addEventListener('click', changeToMetric);
 
 search(city);
+displayForecast();
