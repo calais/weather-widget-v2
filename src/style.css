@@ -89,5 +89,14 @@ a.disabled {
 .weather-forecast{
   margin-top: 20px;
   text-align: center;
-  float: left;
+  color: #878787;
+  font-size: 18px;
+}
+
+.weather-forecast-temp{
+  font-size: 16px;
+}
+
+.weather-forecast-temp-max{
+  color: black;
 }
